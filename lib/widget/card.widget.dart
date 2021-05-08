@@ -100,7 +100,6 @@ class _CardWidgetState extends State<CardWidget> {
 
   _getUsoVacuna() {
     RegExp exp = RegExp(r"(\año)");
-//    String str = "Parse my string";
     List<Vacuna> departamento = widget.datos
         .where((item) =>
             item.nomTerritorio.contains(widget.resumen.nomTerritorio) &&

@@ -38,7 +38,6 @@ class SubscriberChartUso extends StatelessWidget {
                   animate: true,
                   vertical: false,
                 ),
-                //child: charts.,
               )
             ],
           ),
