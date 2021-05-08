@@ -8,13 +8,20 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'chart_vacuna.dart';
 import 'chart_uso_vacuna.dart';
 
-class CardWidget extends StatelessWidget {
+class CardWidget extends StatefulWidget {
   final ResVacuna resumen;
   final List<Vacuna> datos;
-  List<LaboratioSeries> dataLaboratorio = [];
-  List<UsoSeries> dataUso = [];
 
   CardWidget({@required this.resumen, this.datos});
+
+  @override
+  _CardWidgetState createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  List<LaboratioSeries> dataLaboratorio = [];
+
+  List<UsoSeries> dataUso = [];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class CardWidget extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.arrow_drop_down_circle),
               title: Text(
-                resumen.nomTerritorio,
+                widget.resumen.nomTerritorio,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
@@ -38,7 +45,7 @@ class CardWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                resumen.cantidad,
+                widget.resumen.cantidad,
                 style: TextStyle(
                     color: Colors.black.withOpacity(0.6),
                     fontSize: 22,
@@ -56,7 +63,7 @@ class CardWidget extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => SubscriberChart(
                                 data: dataLaboratorio,
-                                departamento: resumen.nomTerritorio)));
+                                departamento: widget.resumen.nomTerritorio)));
                   },
                   child: Center(
                       child: Icon(
@@ -73,7 +80,7 @@ class CardWidget extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => SubscriberChartUso(
                                 data: dataUso,
-                                departamento: resumen.nomTerritorio)));
+                                departamento: widget.resumen.nomTerritorio)));
                   },
                   child: Center(
                       child: Icon(
@@ -92,8 +99,12 @@ class CardWidget extends StatelessWidget {
   }
 
   _getUsoVacuna() {
-    List<Vacuna> departamento = datos
-        .where((item) => item.nomTerritorio.contains(resumen.nomTerritorio))
+    RegExp exp = RegExp(r"(\año)");
+//    String str = "Parse my string";
+    List<Vacuna> departamento = widget.datos
+        .where((item) =>
+            item.nomTerritorio.contains(widget.resumen.nomTerritorio) &&
+            item.usoVacuna.contains(exp))
         .toList();
 
     List<String> uso = [];
@@ -111,13 +122,15 @@ class CardWidget extends StatelessWidget {
           uso: i,
           cantidad: aux,
           barColor: charts.ColorUtil.fromDartColor(Colors.blue)));
+      print(aux);
       aux = 0;
     }
   }
 
   _crearData() {
-    List<Vacuna> departamento = datos
-        .where((item) => item.nomTerritorio.contains(resumen.nomTerritorio))
+    List<Vacuna> departamento = widget.datos
+        .where(
+            (item) => item.nomTerritorio.contains(widget.resumen.nomTerritorio))
         .toList();
 
     List<String> laboratorios = [];

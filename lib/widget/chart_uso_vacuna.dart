@@ -33,7 +33,12 @@ class SubscriberChartUso extends StatelessWidget {
                     color: Colors.redAccent, fontWeight: FontWeight.bold),
               ),
               Expanded(
-                child: charts.BarChart(series, animate: true),
+                child: charts.BarChart(
+                  series,
+                  animate: true,
+                  vertical: false,
+                ),
+                //child: charts.,
               )
             ],
           ),
