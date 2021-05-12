@@ -17,6 +17,10 @@ class SubscriberChartUso extends StatelessWidget {
           domainFn: (UsoSeries series, _) => series.uso,
           measureFn: (UsoSeries series, _) => series.cantidad,
           colorFn: (UsoSeries series, _) => series.barColor)
+      /*colorFn: (UsoSeries series, _) =>
+              charts.ColorUtil.fromDartColor(Colors.orange),
+          fillColorFn: (UsoSeries series, _) =>
+              charts.ColorUtil.fromDartColor(Colors.orange)*/
     ];
 
     return Container(

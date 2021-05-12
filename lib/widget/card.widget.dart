@@ -23,6 +23,8 @@ class _CardWidgetState extends State<CardWidget> {
 
   List<UsoSeries> dataUso = [];
 
+  var _colorBarra;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -108,7 +110,9 @@ class _CardWidgetState extends State<CardWidget> {
 
     List<String> uso = [];
     departamento.forEach((element) {
-      if (!uso.contains(element.usoVacuna)) uso.add(element.usoVacuna);
+      if (!uso.contains(element.usoVacuna)) {
+        uso.add(element.usoVacuna);
+      }
     });
     int aux = 0;
     for (var i in uso) {
@@ -118,12 +122,25 @@ class _CardWidgetState extends State<CardWidget> {
         }
       });
       dataUso.add(UsoSeries(
-          uso: i,
-          cantidad: aux,
-          barColor: charts.ColorUtil.fromDartColor(Colors.blue)));
-      print(aux);
+        uso: i,
+        cantidad: aux,
+        barColor: _setColor(_colorBarra, i),
+      ));
+      //print("Uso_________ $uso");
+      //print("Auxiliar_________ $aux");
+
       aux = 0;
     }
+  }
+
+  _setColor(_colorBarra, i) {
+    print("i____ $i");
+    if (i == 1) {
+      _colorBarra = charts.ColorUtil.fromDartColor(Colors.orange);
+    } else {
+      _colorBarra = charts.ColorUtil.fromDartColor(Colors.red);
+    }
+    return _colorBarra;
   }
 
   _crearData() {
