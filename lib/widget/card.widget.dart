@@ -134,11 +134,33 @@ class _CardWidgetState extends State<CardWidget> {
   }
 
   _setColor(_colorBarra, i) {
-    print("i____ $i");
-    if (i == 1) {
-      _colorBarra = charts.ColorUtil.fromDartColor(Colors.orange);
-    } else {
-      _colorBarra = charts.ColorUtil.fromDartColor(Colors.red);
+    print("$i");
+
+    switch (i) {
+      case "18 años y más":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.indigo);
+        break;
+      case "Mayores de 60 años":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.yellow);
+        break;
+      case "Mayores de 65 años":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.blue);
+        break;
+      case "Primera dosis 65 a 59 años":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.red);
+        break;
+      case "70 a 79 años":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.green);
+        break;
+      case "75 a 79 años":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.orange);
+        break;
+      case "Mayores o iguales a 80 años":
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.pink);
+        break;
+      default:
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.white);
+        break;
     }
     return _colorBarra;
   }
