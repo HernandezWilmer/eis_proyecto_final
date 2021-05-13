@@ -1,5 +1,6 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:vacunas/models/subscriber_series_uso.dart';
 
 class SubscriberChartUso extends StatelessWidget {
@@ -13,14 +14,10 @@ class SubscriberChartUso extends StatelessWidget {
     List<charts.Series<UsoSeries, String>> series = [
       charts.Series(
           id: "Uso",
-          data: data,
           domainFn: (UsoSeries series, _) => series.uso,
           measureFn: (UsoSeries series, _) => series.cantidad,
+          data: data,
           colorFn: (UsoSeries series, _) => series.barColor)
-      /*colorFn: (UsoSeries series, _) =>
-              charts.ColorUtil.fromDartColor(Colors.orange),
-          fillColorFn: (UsoSeries series, _) =>
-              charts.ColorUtil.fromDartColor(Colors.orange)*/
     ];
 
     return Container(
