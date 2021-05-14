@@ -125,10 +125,10 @@ class _CardWidgetState extends State<CardWidget> {
       });
 
       dataUso.add(UsoSeries(
-          uso: i,
-          cantidad: aux,
-          barColor: _setColorUso(_colorBarra, i),
-          etiqueta: {'$i: \$$aux'}));
+        uso: i,
+        cantidad: aux,
+        barColor: _setColorUso(_colorBarra, i),
+      ));
       //print("$i: $aux");
       aux = 0;
     }
