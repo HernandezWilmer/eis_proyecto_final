@@ -27,6 +27,7 @@ class _CardWidgetState extends State<CardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.green[100],
       padding: const EdgeInsets.all(8),
       child: Card(
         clipBehavior: Clip.antiAlias,
