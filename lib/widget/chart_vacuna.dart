@@ -14,6 +14,8 @@ class SubscriberChart extends StatelessWidget {
       charts.Series(
           id: "Laboratorios",
           data: data,
+          labelAccessorFn: (LaboratioSeries series, _) =>
+              '${series.cantidad.toString()}',
           domainFn: (LaboratioSeries series, _) => series.laboratorio,
           measureFn: (LaboratioSeries series, _) => series.cantidad,
           colorFn: (LaboratioSeries series, _) => series.barColor)
@@ -33,7 +35,11 @@ class SubscriberChart extends StatelessWidget {
                     color: Colors.redAccent, fontWeight: FontWeight.bold),
               ),
               Expanded(
-                child: charts.BarChart(series, animate: true),
+                child: charts.BarChart(
+                  series,
+                  animate: true,
+                  barRendererDecorator: new charts.BarLabelDecorator<String>(),
+                ),
               )
             ],
           ),

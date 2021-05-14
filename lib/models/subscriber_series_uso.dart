@@ -4,12 +4,13 @@ import 'package:charts_flutter/flutter.dart' as charts;
 class UsoSeries {
   final String uso;
   final int cantidad;
-  final List etiqueta;
+  final etiqueta;
+
   final charts.Color barColor;
 
   UsoSeries(
       {@required this.uso,
       @required this.cantidad,
-      this.etiqueta,
+      @required this.etiqueta,
       @required this.barColor});
 }

@@ -5,12 +5,6 @@ import 'package:vacunas/models/vacuna.models.dart';
 class VacunaProvider {
   Future<List<Vacuna>> getVacunas() async {
     List<Vacuna> listVacunas = [];
-    /*Map<String, String> queryParameters = {
-      r'$select':
-          'a_o, cod_territorio,nom_territorio,laboratorio_vacuna,sum(cantidad),uso_vacuna,fecha_corte',
-      r'$group':
-          '_o, cod_territorio,nom_territorio,laboratorio_vacuna,uso_vacuna,fecha_corte'
-    };*/
 
     Map<String, String> queryParameters = {
       'fecha_corte': '2021-04-29T00:00:00.000'

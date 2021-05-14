@@ -14,9 +14,11 @@ class SubscriberChartUso extends StatelessWidget {
     List<charts.Series<UsoSeries, String>> series = [
       charts.Series(
           id: "Uso",
+          data: data,
+          labelAccessorFn: (UsoSeries series, _) =>
+              '${series.cantidad.toString()}',
           domainFn: (UsoSeries series, _) => series.uso,
           measureFn: (UsoSeries series, _) => series.cantidad,
-          data: data,
           colorFn: (UsoSeries series, _) => series.barColor)
     ];
 
@@ -38,6 +40,7 @@ class SubscriberChartUso extends StatelessWidget {
                   series,
                   animate: true,
                   vertical: false,
+                  barRendererDecorator: new charts.BarLabelDecorator<String>(),
                 ),
               )
             ],

@@ -59,20 +59,11 @@ class _HomePageState extends State<HomePage> {
               aux = 0;
             }
             return ListView(children: departamentos);
-            /*GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(8),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: 2,
-              children: departamentos,
-            );*/
           } else {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-          //   return Container(child: Text("123"));
         });
   }
 }

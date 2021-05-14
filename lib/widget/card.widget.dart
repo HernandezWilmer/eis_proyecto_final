@@ -21,6 +21,7 @@ class CardWidget extends StatefulWidget {
 class _CardWidgetState extends State<CardWidget> {
   List<LaboratioSeries> dataLaboratorio = [];
   List<UsoSeries> dataUso = [];
+
   var _colorBarra;
 
   @override
@@ -100,6 +101,7 @@ class _CardWidgetState extends State<CardWidget> {
 
   _getUsoVacuna() {
     RegExp exp = RegExp(r"(\año)");
+
     List<Vacuna> departamento = widget.datos
         .where((item) =>
             item.nomTerritorio.contains(widget.resumen.nomTerritorio) &&
@@ -107,7 +109,6 @@ class _CardWidgetState extends State<CardWidget> {
         .toList();
 
     List<String> uso = [];
-    List<String> cantidadLista = [];
 
     departamento.forEach((element) {
       if (!uso.contains(element.usoVacuna)) {
@@ -121,23 +122,19 @@ class _CardWidgetState extends State<CardWidget> {
         if (e.usoVacuna == i) {
           aux += int.parse(e.cantidad);
         }
-        cantidadLista.add(aux.toString());
       });
-      dataUso.add(
-        UsoSeries(
+
+      dataUso.add(UsoSeries(
           uso: i,
           cantidad: aux,
           barColor: _setColorUso(_colorBarra, i),
-          //etiqueta: (UsoSeries uso, _) =>
-          //    '\$${uso.toString()}'),
-        ),
-      );
-      print(aux);
+          etiqueta: {'$i: \$$aux'}));
+      //print("$i: $aux");
       aux = 0;
     }
   }
 
-  _setColorUso(_colorBarra, i) {
+  charts.Color _setColorUso(_colorBarra, i) {
     switch (i) {
       case "18 años y más":
         _colorBarra = charts.ColorUtil.fromDartColor(Colors.indigo);
@@ -193,10 +190,10 @@ class _CardWidgetState extends State<CardWidget> {
     }
   }
 
-  _setColorLaboratorio(_colorBarra, i) {
+  charts.Color _setColorLaboratorio(_colorBarra, i) {
     switch (i) {
       case "PFIZER":
-        _colorBarra = charts.ColorUtil.fromDartColor(Colors.yellow);
+        _colorBarra = charts.ColorUtil.fromDartColor(Colors.green);
         break;
       case "SINOVAC":
         _colorBarra = charts.ColorUtil.fromDartColor(Colors.blue);
